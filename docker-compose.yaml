@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+    memcached:
+      image: memcached:1.6.17-alpine
+      restart: always
+      ports:
+        - "11211:11211"
+      networks:
+        - v_network
+    api:
+        build: .
+        volumes:
+          - ./src:/src
+        ports:
+          - "8080:8080"
+        networks:
+          - v_network
+networks:
+  v_network:
+    driver: bridge
