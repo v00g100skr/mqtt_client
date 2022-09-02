@@ -8,12 +8,20 @@ services:
         - "11211:11211"
       networks:
         - v_network
-    api:
-        build: .
+    web:
+        build: ./web
         volumes:
-          - ./src:/src
+          - ./src:/web
         ports:
           - "8080:8080"
+        networks:
+          - v_network
+    client:
+        build: ./client
+        volumes:
+          - ./src:/client
+        ports:
+          - "8081:8081"
         networks:
           - v_network
 networks:
