@@ -10,4 +10,4 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir && rm -f requirements.txt
 
 COPY src $APP_DIR
-CMD python client.py
+CMD python viewer.py

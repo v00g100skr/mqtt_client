@@ -2,24 +2,37 @@ version: "3.8"
 
 services:
     memcached:
+      hostname: memcached
       image: memcached:1.6.17-alpine
       restart: always
       ports:
         - "11211:11211"
       networks:
         - v_network
-    web:
-        build: ./web
+    viewer:
+        hostname: viewer
+        build: ./viewer
+        image: v00gl00skr/viewer:latest
+        environment:
+          - MEMCHACHED_HOST=memcached
+          - MEMCHACHED_PORT=11211
         volumes:
-          - ./src:/web
+          - ./src:/viewer
         ports:
           - "8080:8080"
         networks:
           - v_network
-    client:
-        build: ./client
+    subscriber:
+        hostname: subscriber
+        build: ./subscriber
+        image: v00gl00skr/subscriber:latest
+        environment:
+          - MEMCHACHED_HOST=memcached
+          - MEMCHACHED_PORT=11211
+          - MQTT_LOGIN=zigstar
+          - MQTT_PASSWORD=zigstar
         volumes:
-          - ./src:/client
+          - ./src:/subscriber
         ports:
           - "8081:8081"
         networks:
