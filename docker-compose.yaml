@@ -24,7 +24,9 @@ services:
           - v_network
     subscriber:
         hostname: subscriber
-        build: ./subscriber
+        build:
+            context: https://github.com/v00g100skr/mqtt_client.git
+            dockerfile: subscriber/Dockerfile
         image: v00gl00skr/subscriber:latest
         environment:
           - MEMCHACHED_HOST=memcached

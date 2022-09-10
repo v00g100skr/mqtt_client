@@ -1,6 +1,6 @@
 FROM python:3.10.6-alpine
 
-ENV APP_DIR /src
+ENV APP_DIR /viewer/src
 ENV PYTHONPATH $PYTHONPATH:$APP_DIR
 
 WORKDIR $APP_DIR
