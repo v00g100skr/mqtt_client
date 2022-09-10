@@ -11,7 +11,7 @@ services:
         - v_network
     viewer:
         hostname: viewer
-        build: ./viewer
+        build: https://github.com/v00g100skr/mqtt_client_viewer.git
         image: v00gl00skr/viewer:latest
         environment:
           - MEMCHACHED_HOST=memcached
@@ -24,9 +24,7 @@ services:
           - v_network
     subscriber:
         hostname: subscriber
-        build:
-            context: https://github.com/v00g100skr/mqtt_client.git
-            dockerfile: subscriber/Dockerfile
+        build: https://github.com/v00g100skr/mqtt_client_subscriber.git
         image: v00gl00skr/subscriber:latest
         environment:
           - MEMCHACHED_HOST=memcached
